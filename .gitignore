@@ -1,0 +1,8 @@
+# systémové soubory
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# lokální nastavení editorů
+.vscode/
+.idea/

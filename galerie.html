@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fotogalerie, Restaurace a penzion U Slunce Třeboň</title>
+<meta name="description" content="Fotografie restaurace, zahrádky, pokojů a areálu penzionu U Slunce v Třeboni.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:title" content="Fotogalerie, Restaurace a penzion U Slunce Třeboň">
+<meta property="og:description" content="Fotografie restaurace, zahrádky, pokojů a areálu penzionu U Slunce v Třeboni.">
+<meta property="og:image" content="assets/photos/fasada-lg.webp">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Přeskočit na obsah</a>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="header">
+  <div class="wrap header__inner">
+    <a class="brand" href="index.html" aria-label="U Slunce, domovská stránka">
+      <svg class="sunmark" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><circle cx="32" cy="32" r="10.5"/><path d="M32 5.5l3.4 9.4h-6.8zM32 58.5l-3.4-9.4h6.8zM5.5 32l9.4-3.4v6.8zM58.5 32l-9.4 3.4v-6.8zM13.2 13.2l9.1 4.1-4.8 4.8zM50.8 50.8l-9.1-4.1 4.8-4.8zM50.8 13.2l-4.1 9.1-4.8-4.8zM13.2 50.8l4.1-9.1 4.8 4.8z"/></svg>
+      <span class="brand__text">
+        <span class="brand__name">U Slunce</span>
+        <span class="brand__sub">Třeboň</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Hlavní navigace">
+      <a class="nav__link" href="index.html">Domů</a>
+      <a class="nav__link" href="restaurace.html">Restaurace</a>
+      <a class="nav__link" href="listek.html">Lístek</a>
+      <a class="nav__link" href="ubytovani.html">Ubytování</a>
+      <a class="nav__link" href="galerie.html" aria-current="page">Fotogalerie</a>
+      <a class="nav__link" href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <a class="btn btn--primary btn--sm header__cta" href="tel:+420389822499"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Rezervace</a>
+
+    <button class="burger" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otevřít menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html">Domů</a>
+  <a href="restaurace.html">Restaurace</a>
+  <a href="listek.html">Jídelní a nápojový lístek</a>
+  <a href="ubytovani.html">Ubytování</a>
+  <a href="galerie.html" aria-current="page">Fotogalerie</a>
+  <a href="kontakt.html">Kontakt</a>
+  <div class="mobile-nav__foot">
+    <a class="btn btn--primary" href="tel:+420389822499">Rezervace stolu</a>
+    <a class="btn btn--ghost" href="tel:+420389822493">Rezervace ubytování</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <section class="page-hero">
+    <img class="page-hero__bg" src="assets/photos/hero-galerie.webp" alt="Dvůr penzionu s příjezdovou cestou" width="2200" height="1238" fetchpriority="high">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Drobečková navigace">
+        <a href="index.html">Domů</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        <span>Fotogalerie</span>
+      </nav>
+      <h1><span class="line-mask"><span>Fotogalerie</span></span></h1>
+      <p class="lead">Restaurace, zahrádka, pokoje i areál penzionu. Klikněte na fotografii pro zvětšení.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="filter-bar" data-filter role="group" aria-label="Filtr fotografií" data-reveal>
+        <button type="button" data-value="all" aria-pressed="true">Vše</button>
+        <button type="button" data-value="restaurace" aria-pressed="false">Restaurace</button>
+        <button type="button" data-value="zahradka" aria-pressed="false">Zahrádka</button>
+        <button type="button" data-value="pokoje" aria-pressed="false">Pokoje</button>
+        <button type="button" data-value="areal" aria-pressed="false">Areál</button>
+      </div>
+
+      <div class="gallery">
+        <figure class="gallery__item is-tall" data-cat="zahradka" data-lightbox data-full="assets/photos/zahradka-kvetiny.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Zahrádka s rozkvetlými truhlíky a prostřenými stoly">
+          <img src="assets/photos/zahradka-kvetiny-sm.webp" alt="Zahrádka s rozkvetlými truhlíky a prostřenými stoly" width="480" height="360" loading="lazy">
+          <figcaption>Zahrádka s rozkvetlými truhlíky a prostřenými stoly</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="restaurace" data-lightbox data-full="assets/photos/restaurace-salonek.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Salonek se zelenými koženými lavicemi">
+          <img src="assets/photos/restaurace-salonek-sm.webp" alt="Salonek se zelenými koženými lavicemi" width="480" height="360" loading="lazy">
+          <figcaption>Salonek se zelenými koženými lavicemi</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="restaurace" data-lightbox data-full="assets/photos/bar.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Dřevěný bar s výčepem a barovými židlemi">
+          <img src="assets/photos/bar-sm.webp" alt="Dřevěný bar s výčepem a barovými židlemi" width="480" height="360" loading="lazy">
+          <figcaption>Dřevěný bar s výčepem a barovými židlemi</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="zahradka" data-lightbox data-full="assets/photos/zahradka-pergola.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Krytá zahrádka se stoly pod pergolou">
+          <img src="assets/photos/zahradka-pergola-sm.webp" alt="Krytá zahrádka se stoly pod pergolou" width="480" height="360" loading="lazy">
+          <figcaption>Krytá zahrádka se stoly pod pergolou</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="restaurace" data-lightbox data-full="assets/photos/restaurace-interier.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Interiér restaurace s obrazy a lavicemi">
+          <img src="assets/photos/restaurace-interier-sm.webp" alt="Interiér restaurace s obrazy a lavicemi" width="480" height="360" loading="lazy">
+          <figcaption>Interiér restaurace s obrazy a lavicemi</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="zahradka" data-lightbox data-full="assets/photos/zahradka-slunce.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Terasa s kovaným sluncem na okrové stěně">
+          <img src="assets/photos/zahradka-slunce-sm.webp" alt="Terasa s kovaným sluncem na okrové stěně" width="480" height="360" loading="lazy">
+          <figcaption>Terasa s kovaným sluncem na okrové stěně</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="restaurace" data-lightbox data-full="assets/photos/restaurace-vstup.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Vstupní část restaurace s lampou">
+          <img src="assets/photos/restaurace-vstup-sm.webp" alt="Vstupní část restaurace s lampou" width="480" height="360" loading="lazy">
+          <figcaption>Vstupní část restaurace s lampou</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="zahradka" data-lightbox data-full="assets/photos/zahradka-detsky-koutek.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Dětský domeček na dřevěné terase">
+          <img src="assets/photos/zahradka-detsky-koutek-sm.webp" alt="Dětský domeček na dřevěné terase" width="480" height="360" loading="lazy">
+          <figcaption>Dětský domeček na dřevěné terase</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="restaurace" data-lightbox data-full="assets/photos/kuchyne-talire.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Připravené talíře na výdejním pultu">
+          <img src="assets/photos/kuchyne-talire-sm.webp" alt="Připravené talíře na výdejním pultu" width="480" height="360" loading="lazy">
+          <figcaption>Připravené talíře na výdejním pultu</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="zahradka" data-lightbox data-full="assets/photos/zahradka-vchod.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Vjezd do dvora se zahrádkou restaurace">
+          <img src="assets/photos/zahradka-vchod-sm.webp" alt="Vjezd do dvora se zahrádkou restaurace" width="480" height="360" loading="lazy">
+          <figcaption>Vjezd do dvora se zahrádkou restaurace</figcaption>
+        </figure>
+        <figure class="gallery__item is-tall" data-cat="pokoje" data-lightbox data-full="assets/photos/pokoj-podkrovni.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Podkrovní pokoj s posezením u střešního okna">
+          <img src="assets/photos/pokoj-podkrovni-sm.webp" alt="Podkrovní pokoj s posezením u střešního okna" width="480" height="360" loading="lazy">
+          <figcaption>Podkrovní pokoj s posezením u střešního okna</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="pokoje" data-lightbox data-full="assets/photos/pokoj-s-terasou.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Dvoulůžkový pokoj s prosklenými dveřmi na balkon">
+          <img src="assets/photos/pokoj-s-terasou-sm.webp" alt="Dvoulůžkový pokoj s prosklenými dveřmi na balkon" width="480" height="360" loading="lazy">
+          <figcaption>Dvoulůžkový pokoj s prosklenými dveřmi na balkon</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="pokoje" data-lightbox data-full="assets/photos/pokoj-dvouluzkovy.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Dvoulůžkový pokoj se střešními okny">
+          <img src="assets/photos/pokoj-dvouluzkovy-sm.webp" alt="Dvoulůžkový pokoj se střešními okny" width="480" height="360" loading="lazy">
+          <figcaption>Dvoulůžkový pokoj se střešními okny</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="pokoje" data-lightbox data-full="assets/photos/apartman.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Prostorný apartmán s posezením a dvěma postelemi">
+          <img src="assets/photos/apartman-sm.webp" alt="Prostorný apartmán s posezením a dvěma postelemi" width="480" height="360" loading="lazy">
+          <figcaption>Prostorný apartmán s posezením a dvěma postelemi</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="pokoje" data-lightbox data-full="assets/photos/kuchynka.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Kuchyňský kout s lednicí a mikrovlnnou troubou">
+          <img src="assets/photos/kuchynka-sm.webp" alt="Kuchyňský kout s lednicí a mikrovlnnou troubou" width="480" height="360" loading="lazy">
+          <figcaption>Kuchyňský kout s lednicí a mikrovlnnou troubou</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="pokoje" data-lightbox data-full="assets/photos/koupelna.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Koupelna se sprchovým koutem">
+          <img src="assets/photos/koupelna-sm.webp" alt="Koupelna se sprchovým koutem" width="480" height="360" loading="lazy">
+          <figcaption>Koupelna se sprchovým koutem</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="pokoje" data-lightbox data-full="assets/photos/chodba.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Světlá chodba penzionu s informační nástěnkou">
+          <img src="assets/photos/chodba-sm.webp" alt="Světlá chodba penzionu s informační nástěnkou" width="480" height="360" loading="lazy">
+          <figcaption>Světlá chodba penzionu s informační nástěnkou</figcaption>
+        </figure>
+        <figure class="gallery__item is-tall" data-cat="areal" data-lightbox data-full="assets/photos/fasada.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Fasáda budovy s nápisy Restaurace a Pension">
+          <img src="assets/photos/fasada-sm.webp" alt="Fasáda budovy s nápisy Restaurace a Pension" width="480" height="360" loading="lazy">
+          <figcaption>Fasáda budovy s nápisy Restaurace a Pension</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="areal" data-lightbox data-full="assets/photos/areal-budova.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Budova penzionu s parkovištěm v areálu">
+          <img src="assets/photos/areal-budova-sm.webp" alt="Budova penzionu s parkovištěm v areálu" width="480" height="360" loading="lazy">
+          <figcaption>Budova penzionu s parkovištěm v areálu</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="areal" data-lightbox data-full="assets/photos/areal-vjezd.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Vjezd do areálu penzionu">
+          <img src="assets/photos/areal-vjezd-sm.webp" alt="Vjezd do areálu penzionu" width="480" height="360" loading="lazy">
+          <figcaption>Vjezd do areálu penzionu</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="areal" data-lightbox data-full="assets/photos/areal-dvur.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Dvůr penzionu s příjezdovou cestou">
+          <img src="assets/photos/areal-dvur-sm.webp" alt="Dvůr penzionu s příjezdovou cestou" width="480" height="360" loading="lazy">
+          <figcaption>Dvůr penzionu s příjezdovou cestou</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="areal" data-lightbox data-full="assets/photos/areal-detail.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Terasa penzionu s květinovou výzdobou">
+          <img src="assets/photos/areal-detail-sm.webp" alt="Terasa penzionu s květinovou výzdobou" width="480" height="360" loading="lazy">
+          <figcaption>Terasa penzionu s květinovou výzdobou</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="areal" data-lightbox data-full="assets/photos/znak-slunce.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Kovaný znak slunce nad vchodem">
+          <img src="assets/photos/znak-slunce-sm.webp" alt="Kovaný znak slunce nad vchodem" width="480" height="360" loading="lazy">
+          <figcaption>Kovaný znak slunce nad vchodem</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="areal" data-lightbox data-full="assets/photos/parkovani.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Krytý vjezd na parkoviště penzionu">
+          <img src="assets/photos/parkovani-sm.webp" alt="Krytý vjezd na parkoviště penzionu" width="480" height="360" loading="lazy">
+          <figcaption>Krytý vjezd na parkoviště penzionu</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="areal" data-lightbox data-full="assets/photos/parkoviste.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Parkoviště před restaurací se zahrádkou">
+          <img src="assets/photos/parkoviste-sm.webp" alt="Parkoviště před restaurací se zahrádkou" width="480" height="360" loading="lazy">
+          <figcaption>Parkoviště před restaurací se zahrádkou</figcaption>
+        </figure>
+        <figure class="gallery__item" data-cat="areal" data-lightbox data-full="assets/photos/ulice.webp" tabindex="0" role="button" aria-label="Zvětšit fotografii, Pohled na restauraci z ulice">
+          <img src="assets/photos/ulice-sm.webp" alt="Pohled na restauraci z ulice" width="480" height="360" loading="lazy">
+          <figcaption>Pohled na restauraci z ulice</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="callout" data-reveal>
+        <h2>Líbí se vám u nás?</h2>
+        <p>Rezervujte si stůl nebo pokoj telefonicky, těšíme se na vaši návštěvu.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="tel:+420389822499">Restaurace 389 822 499</a>
+          <a class="btn btn--light" href="tel:+420389822493">Penzion 389 822 493</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <div class="brand">
+          <svg class="sunmark" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><circle cx="32" cy="32" r="10.5"/><path d="M32 5.5l3.4 9.4h-6.8zM32 58.5l-3.4-9.4h6.8zM5.5 32l9.4-3.4v6.8zM58.5 32l-9.4 3.4v-6.8zM13.2 13.2l9.1 4.1-4.8 4.8zM50.8 50.8l-9.1-4.1 4.8-4.8zM50.8 13.2l-4.1 9.1-4.8-4.8zM13.2 50.8l4.1-9.1 4.8 4.8z"/></svg>
+          <span class="brand__text">
+            <span class="brand__name">U Slunce</span>
+            <span class="brand__sub">Třeboň</span>
+          </span>
+        </div>
+        <p class="footer__about">Restaurace a penzion v klidné vilové čtvrti
+          na předměstí Třeboně, kousek od lázní i rybníka Svět.</p>
+      </div>
+
+      <div>
+        <h4>Stránky</h4>
+        <ul>
+          <li><a href="restaurace.html">Restaurace</a></li>
+          <li><a href="listek.html">Jídelní lístek</a></li>
+          <li><a href="listek.html#napoje">Nápojový lístek</a></li>
+          <li><a href="ubytovani.html">Ubytování</a></li>
+          <li><a href="galerie.html">Fotogalerie</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Otevřeno</h4>
+        <ul>
+          <li>Neděle až čtvrtek<br>10.00 až 22.00</li>
+          <li style="padding-top:12px">Pátek a sobota<br>10.00 až 23.00</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li>Riegrova 1251<br>379 01 Třeboň</li>
+          <li style="padding-top:12px"><a href="tel:+420389822499">Restaurace 389 822 499</a></li>
+          <li><a href="tel:+420389822493">Penzion 389 822 493</a></li>
+          <li><a href="mailto:lebrasynove@seznam.cz">lebrasynove@seznam.cz</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>Penzion U Slunce, všechna práva vyhrazena</span>
+      <span>IČ 25183800</span>
+    </div>
+  </div>
+</footer>
+
+<a class="btn btn--primary call-fab" href="tel:+420389822499"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Zavolat a rezervovat</a>
+
+<div class="lightbox" role="dialog" aria-modal="true" aria-label="Zvětšená fotografie">
+  <button class="lightbox__close" aria-label="Zavřít"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <button class="lightbox__prev" aria-label="Předchozí fotografie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <button class="lightbox__next" aria-label="Další fotografie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+  <div>
+    <img alt="">
+    <p class="lightbox__caption"><span></span><span class="lightbox__count"></span></p>
+  </div>
+</div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
