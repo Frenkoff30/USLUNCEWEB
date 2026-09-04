@@ -16,7 +16,7 @@ TEL_P = '+420389822493'
 MAIL = 'lebrasynove@seznam.cz'
 
 # razítko za odkazy na styl a skript, aby si prohlížeč po úpravě načetl novou verzi
-ASSET_V = '19'
+ASSET_V = '20'
 
 PAGES = [
     ('index.html', 'Domů'),
@@ -321,7 +321,7 @@ def build_index():
   <section class="hero">
     <div class="hero__media">
       <picture>
-        <source media="(max-width: 900px)" srcset="assets/photos/hero-uvod-uzky.webp?v=%s" width="1000" height="625">
+        <source media="(max-width: 900px)" srcset="assets/photos/hero-uvod-uzky.webp?v=%s" width="800" height="1067">
         <img src="assets/photos/hero-uvod.webp?v=%s" alt="Bar restaurace U Slunce s výčepem, láhvemi a barovými židlemi" width="1300" height="1224" fetchpriority="high" decoding="async">
       </picture>
     </div>

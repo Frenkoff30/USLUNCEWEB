@@ -497,23 +497,34 @@ body.is-locked { overflow: hidden; }
 }
 .hero__dot.is-shut { background: var(--ink-3); box-shadow: none; }
 
-/* pod 900 body se sloupce sklopí pod sebe, fotka nahoru */
+/* Pod 900 body už na dva sloupce není místo. Fotka proto zabere celou
+   plochu a název s tlačítky leží na ní, jako na každém mobilním webu.
+   Dvě oddělené plochy pod sebou vypadaly lacině. */
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    min-height: 0;
+    grid-template-rows: 1fr auto;
+    min-height: 92svh;
   }
-  .hero__panel { grid-area: 2 / 1; }
-  /* panel je tu nizky, kresba slunce by lezela na nadpisu */
+  .hero__media { grid-area: 1 / 1; }
+  .hero__panel {
+    grid-area: 1 / 1;
+    background: none;
+    overflow: visible;
+  }
+  /* kresba slunce by na fotce jen dělala neklid */
   .hero__panel .deco__sun { display: none; }
-  .hero__media { grid-area: 1 / 1; aspect-ratio: 4 / 3; }
   .hero__media::after {
-    background: linear-gradient(180deg, rgba(12,5,3,.86) 0%, rgba(12,5,3,.42) 14%, rgba(12,5,3,0) 34%, rgba(29,9,7,.92) 100%);
+    background:
+      linear-gradient(180deg, rgba(10,4,3,.82) 0%, rgba(10,4,3,.34) 15%, rgba(10,4,3,0) 36%),
+      linear-gradient(0deg, rgba(22,8,5,.95) 0%, rgba(22,8,5,.78) 22%, rgba(22,8,5,.34) 46%, rgba(22,8,5,0) 68%);
   }
-  .hero__bar { grid-area: 3 / 1; }
-  .hero__inner { padding: clamp(30px, 6vw, 42px) 20px clamp(32px, 7vw, 46px); }
-  .hero__title { font-size: clamp(2.9rem, 13vw, 4.2rem); }
+  .hero__bar { grid-area: 2 / 1; }
+  .hero__inner { padding: var(--header-h) 20px clamp(30px, 6vw, 44px); }
+  .hero__title {
+    font-size: clamp(2.9rem, 13vw, 4.2rem);
+    text-shadow: 0 4px 30px rgba(6,2,1,.6);
+  }
 }
 @media (max-width: 760px) {
   .hero__bar-in { font-size: .78rem; gap: 14px; padding-block: 14px; }
@@ -1173,7 +1184,6 @@ main { position: relative; z-index: 2; }
   :root { --header-h: 68px; }
   .nav, .header__cta { display: none; }
   .burger { display: block; }
-  .header::after { opacity: 1; }
 
 
   .page-hero .deco__sun { right: 3%; width: clamp(160px, 34vw, 240px); opacity: .13; }

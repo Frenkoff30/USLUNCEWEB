@@ -51,7 +51,9 @@ HERO = {
     # necelych dvakrat misto trikrat. To je jediny zpusob, jak z predlohy
     # o 640 bodech dostat ostrost.
     'hero-uvod':      ('r2_DSC05515a.jpg', (130, 0, 640, 480), 1300),
-    'hero-uvod-uzky': ('r2_DSC05515a.jpg', (0, 20, 640, 420), 1000),
+    # na telefonu jde fotka pres celou obrazovku, proto vyska na sirku;
+    # displej ma kolem 400 bodu, takze se vyrez spis zmensuje nez zvetsuje
+    'hero-uvod-uzky': ('r2_DSC05515a.jpg', (140, 0, 500, 480), 800),
 }
 
 
