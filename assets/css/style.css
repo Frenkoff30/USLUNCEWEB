@@ -260,6 +260,12 @@ p:last-child { margin-bottom: 0; }
 }
 .header.is-solid::after { opacity: 1; }
 .header.is-solid { box-shadow: var(--sh-sm); }
+/* pojistka: na bile hlavicce nikdy bile pismo */
+.header.is-solid .brand__name { color: var(--black); }
+.header.is-solid .brand__sub { color: var(--ink-3); }
+.header.is-solid .nav__link { color: var(--ink); }
+.header.is-solid .burger span { background: var(--ink); }
+.header.is-solid::before { opacity: 0; }
 
 /* nad tmavým hero se hlavička převrátí do světlé */
 .header.is-over-dark::before {
@@ -267,7 +273,7 @@ p:last-child { margin-bottom: 0; }
   position: absolute;
   inset: -1px 0 auto;
   height: 150px;
-  background: linear-gradient(to bottom, rgba(18,4,3,.55), rgba(18,4,3,0));
+  background: linear-gradient(to bottom, rgba(16,4,3,.7), rgba(16,4,3,.2) 62%, rgba(16,4,3,0));
   pointer-events: none;
 }
 .header.is-over-dark .brand__name,
@@ -499,12 +505,15 @@ body.is-locked { overflow: hidden; }
     min-height: 0;
   }
   .hero__panel { grid-area: 2 / 1; }
-  .hero__media { grid-area: 1 / 1; aspect-ratio: 16 / 10; }
+  /* panel je tu nizky, kresba slunce by lezela na nadpisu */
+  .hero__panel .deco__sun { display: none; }
+  .hero__media { grid-area: 1 / 1; aspect-ratio: 4 / 3; }
   .hero__media::after {
-    background: linear-gradient(180deg, rgba(14,7,4,.62) 0%, rgba(14,7,4,0) 26%, rgba(29,9,7,.92) 100%);
+    background: linear-gradient(180deg, rgba(12,5,3,.86) 0%, rgba(12,5,3,.42) 14%, rgba(12,5,3,0) 34%, rgba(29,9,7,.92) 100%);
   }
   .hero__bar { grid-area: 3 / 1; }
-  .hero__inner { padding: clamp(34px, 6vw, 48px) 20px clamp(34px, 6vw, 48px); }
+  .hero__inner { padding: clamp(30px, 6vw, 42px) 20px clamp(32px, 7vw, 46px); }
+  .hero__title { font-size: clamp(2.9rem, 13vw, 4.2rem); }
 }
 @media (max-width: 760px) {
   .hero__bar-in { font-size: .78rem; gap: 14px; padding-block: 14px; }
@@ -1109,6 +1118,8 @@ main { position: relative; z-index: 2; }
   transition: opacity var(--t), transform var(--t);
 }
 .call-fab.is-shown { opacity: 1; transform: none; }
+/* vyssi vaha nez .btn { width: 100% } v mobilnim bloku, jinak tlacitko pretece */
+.btn.call-fab { width: auto; }
 
 .progress {
   position: fixed;
@@ -1165,7 +1176,7 @@ main { position: relative; z-index: 2; }
   .header::after { opacity: 1; }
 
 
-  .page-hero .deco__sun { right: -14%; opacity: .1; }
+  .page-hero .deco__sun { right: 3%; width: clamp(160px, 34vw, 240px); opacity: .13; }
 
   .split, .cards--2 { grid-template-columns: 1fr; }
   .cards--3 { grid-template-columns: repeat(2, 1fr); }

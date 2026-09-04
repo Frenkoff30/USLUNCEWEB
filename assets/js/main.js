@@ -18,8 +18,10 @@
       var y = window.scrollY;
 
       if (header) {
-        header.classList.toggle('is-solid', y > 24);
-        if (darkHero) header.classList.toggle('is-over-dark', y <= 90);
+        var solid = y > 24;
+        header.classList.toggle('is-solid', solid);
+        /* svetle pismo jen dokud je hlavicka pruhledna, jinak bylo bile na bilem */
+        if (darkHero) header.classList.toggle('is-over-dark', !solid);
       }
       if (fab) fab.classList.toggle('is-shown', y > window.innerHeight * 0.6);
 

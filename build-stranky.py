@@ -16,7 +16,7 @@ TEL_P = '+420389822493'
 MAIL = 'lebrasynove@seznam.cz'
 
 # razítko za odkazy na styl a skript, aby si prohlížeč po úpravě načetl novou verzi
-ASSET_V = '17'
+ASSET_V = '19'
 
 PAGES = [
     ('index.html', 'Domů'),
