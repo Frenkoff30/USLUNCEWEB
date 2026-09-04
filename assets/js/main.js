@@ -6,11 +6,9 @@
 
   /* ---------------------------------------------------- Hlavička */
   var header = document.querySelector('.header');
-  var hasDarkHero = !!document.querySelector('.page-hero, .hero');
-
+  var darkHero = document.querySelector('.hero');
   var progress = document.querySelector('.progress');
   var fab = document.querySelector('.call-fab');
-  var band = document.querySelector('.band__bg');
   var ticking = false;
 
   function onScroll() {
@@ -21,27 +19,18 @@
 
       if (header) {
         header.classList.toggle('is-solid', y > 24);
-        if (hasDarkHero) header.classList.toggle('is-over-dark', y <= 90);
+        if (darkHero) header.classList.toggle('is-over-dark', y <= 90);
       }
-
       if (fab) fab.classList.toggle('is-shown', y > window.innerHeight * 0.6);
 
       if (progress) {
         var max = document.documentElement.scrollHeight - window.innerHeight;
         progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
       }
-
-      if (band && !reduced) {
-        var r = band.parentElement.getBoundingClientRect();
-        if (r.bottom > 0 && r.top < window.innerHeight) {
-          var p = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
-          band.style.transform = 'translate3d(0,' + (p * 9).toFixed(2) + '%,0)';
-        }
-      }
       ticking = false;
     });
   }
-  if (hasDarkHero && header) header.classList.add('is-over-dark');
+  if (darkHero && header) header.classList.add('is-over-dark');
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
@@ -69,66 +58,38 @@
   }
 
   /* --------------------------------------- Odhalování při scrollu */
-  var imgReveals = document.querySelectorAll('[data-reveal-img], .line-mask');
-  if (imgReveals.length) {
+  function reveal(selector, options) {
+    var els = document.querySelectorAll(selector);
+    if (!els.length) return null;
     if (reduced || !('IntersectionObserver' in window)) {
-      imgReveals.forEach(function (el) { el.classList.add('is-visible'); });
-    } else {
-      var ioImg = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (!e.isIntersecting) return;
-          e.target.classList.add('is-visible');
-          ioImg.unobserve(e.target);
-        });
-      }, { rootMargin: '0px 0px -6% 0px', threshold: 0.15 });
-      imgReveals.forEach(function (el) { ioImg.observe(el); });
+      els.forEach(function (el) { el.classList.add('is-visible'); });
+      return null;
     }
-  }
-
-  var revealables = document.querySelectorAll('[data-reveal]');
-  if (revealables.length) {
-    if (reduced || !('IntersectionObserver' in window)) {
-      revealables.forEach(function (el) { el.classList.add('is-visible'); });
-    } else {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (!e.isIntersecting) return;
-          e.target.classList.add('is-visible');
-          io.unobserve(e.target);
-        });
-      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-
-      revealables.forEach(function (el, i) {
-        var group = el.closest('[data-reveal-group]');
-        if (group) {
-          var kids = Array.prototype.slice.call(group.querySelectorAll('[data-reveal]'));
-          el.style.setProperty('--d', Math.min(kids.indexOf(el), 5) * 90 + 'ms');
-        }
-        io.observe(el);
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
       });
-    }
+    }, options);
+    els.forEach(function (el) { io.observe(el); });
+    return io;
   }
+
+  reveal('[data-reveal-img], .line-mask', { rootMargin: '0px 0px -6% 0px', threshold: 0.15 });
+
+  document.querySelectorAll('[data-reveal-group] [data-reveal]').forEach(function (el) {
+    var kids = Array.prototype.slice.call(
+      el.closest('[data-reveal-group]').querySelectorAll('[data-reveal]'));
+    el.style.setProperty('--d', Math.min(kids.indexOf(el), 5) * 90 + 'ms');
+  });
+  reveal('[data-reveal]', { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
 
   /* ---------------------------------------------------- Záložky */
   document.querySelectorAll('[data-tabs]').forEach(function (group) {
     var tabs = group.querySelectorAll('[role="tab"]');
-    tabs.forEach(function (tab, idx) {
-      tab.addEventListener('click', function () { select(idx); });
-      tab.addEventListener('keydown', function (e) {
-        var dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-        if (!dir) return;
-        e.preventDefault();
-        var next = (idx + dir + tabs.length) % tabs.length;
-        select(next);
-        tabs[next].focus();
-      });
-    });
 
-    if (location.hash === '#napoje' && tabs.length > 1) {
-      window.setTimeout(function () { select(1); }, 0);
-    }
-
-    function select(active) {
+    function select(active, focus) {
       tabs.forEach(function (t, i) {
         var on = i === active;
         t.setAttribute('aria-selected', String(on));
@@ -136,7 +97,32 @@
         var panel = document.getElementById(t.getAttribute('aria-controls'));
         if (panel) panel.hidden = !on;
       });
+      if (focus && tabs[active]) tabs[active].focus();
     }
+
+    tabs.forEach(function (tab, idx) {
+      tab.addEventListener('click', function () { select(idx); });
+      tab.addEventListener('keydown', function (e) {
+        var dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!dir) return;
+        e.preventDefault();
+        select((idx + dir + tabs.length) % tabs.length, true);
+      });
+    });
+
+    /* proklik z patičky a z úvodní stránky rovnou na nápoje */
+    function fromHash() {
+      var i = -1;
+      tabs.forEach(function (t, idx) {
+        if ('#' + t.dataset.hash === location.hash) i = idx;
+      });
+      if (i > -1) {
+        select(i);
+        group.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' });
+      }
+    }
+    fromHash();
+    window.addEventListener('hashchange', fromHash);
   });
 
   /* ------------------------------------------ Přepínač sezóny */
@@ -159,24 +145,6 @@
             room.classList.remove('is-swapping');
           }, reduced ? 0 : 200);
         });
-      });
-    });
-  }
-
-  /* ---------------------------------------------- Filtr galerie */
-  var filterBar = document.querySelector('[data-filter]');
-  if (filterBar) {
-    var items = document.querySelectorAll('[data-cat]');
-    filterBar.querySelectorAll('button').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var cat = btn.dataset.value;
-        filterBar.querySelectorAll('button').forEach(function (b) {
-          b.setAttribute('aria-pressed', String(b === btn));
-        });
-        items.forEach(function (it) {
-          it.hidden = !(cat === 'all' || it.dataset.cat === cat);
-        });
-        if (window.buildList) window.buildList();
       });
     });
   }
@@ -259,8 +227,27 @@
   var hoursList = document.querySelector('[data-hours]');
   if (hoursList) {
     var day = new Date().getDay(); // 0 neděle
-    var isWeekendEve = day === 5 || day === 6;
-    var row = hoursList.querySelector(isWeekendEve ? '[data-days="fri-sat"]' : '[data-days="sun-thu"]');
+    var row = hoursList.querySelector(
+      day === 5 || day === 6 ? '[data-days="fri-sat"]' : '[data-days="sun-thu"]');
     if (row) row.classList.add('is-now');
+  }
+
+  /* --------------------------------- Dnešní doba v liště pod hero */
+  var openBox = document.querySelector('[data-open]');
+  if (openBox) {
+    var now = new Date();
+    var wd = now.getDay();
+    var closes = (wd === 5 || wd === 6) ? 23 : 22;   // pátek a sobota do 23
+    var mins = now.getHours() * 60 + now.getMinutes();
+    var isOpen = mins >= 10 * 60 && mins < closes * 60;
+    var text = openBox.querySelector('[data-open-text]');
+    var dot = openBox.querySelector('.hero__dot');
+    var label = openBox.querySelector('b');
+
+    if (text) text.textContent = isOpen
+      ? 'otevřeno do ' + closes + '.00'
+      : 'otevíráme v 10.00';
+    if (label) label.textContent = isOpen ? 'Dnes' : 'Zavřeno';
+    if (dot && !isOpen) dot.classList.add('is-shut');
   }
 })();
