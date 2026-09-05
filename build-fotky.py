@@ -57,9 +57,11 @@ HERO = {
     'hero-uvod':      ('hero foto.jpg', (0, 0, 1200, 675), 1800),
     # na telefonu jde fotka pres celou obrazovku, ta je ale skoro dvakrat
     # vyssi nez sirsi; vyrez proto musi byt uzky jako displej, jinak by z nej
-    # prohlizec ubral dalsi kus po stranach. Zacina az za napisem Restaurace,
-    # at se zadne slovo neurizne, a konci u vstupni cedule.
-    'hero-uvod-uzky': ('hero foto.jpg', (334, 0, 684, 675), 800),
+    # prohlizec ubral dalsi kus po stranach. Vyrez je veden na vyvesni stit se
+    # sluncem: vlevo zacina tesne pred napisem Pension, vpravo konci az za
+    # kovanym drzakem, takze se ani jedno neurizne. Cely snimek pak pusobi
+    # jako pohled vzhuru po fasade, od strechy dolu k oknum.
+    'hero-uvod-uzky': ('hero foto.jpg', (462, 0, 800, 675), 800),
 }
 
 

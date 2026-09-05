@@ -321,7 +321,7 @@ def build_index():
   <section class="hero">
     <div class="hero__media">
       <picture>
-        <source media="(max-width: 900px)" srcset="assets/photos/hero-uvod-uzky.webp?v=%s" width="800" height="1543">
+        <source media="(max-width: 700px)" srcset="assets/photos/hero-uvod-uzky.webp?v=%s" width="800" height="1598">
         <img src="assets/photos/hero-uvod.webp?v=%s" alt="Průčelí restaurace a penzionu U Slunce v Třeboni s cedulemi Restaurace a Pension" width="1800" height="1012" fetchpriority="high" decoding="async">
       </picture>
     </div>

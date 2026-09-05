@@ -76,6 +76,10 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
+  /* Nic nesmi vycuhnout do strany. Starsi Safari nezna clip, proto je pod nim
+     hidden jako zaloha, jinak by se dala cela stranka prstem odtahnout do
+     prazdna a zase pustit zpatky. */
+  overflow-x: hidden;
   overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 16px);
@@ -84,6 +88,8 @@ html {
 
 body {
   margin: 0;
+  max-width: 100%;
+  overflow-x: clip;
   background: var(--surface);
   color: var(--ink);
   font-family: 'Karla', 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -494,7 +500,9 @@ body.is-locked { overflow: hidden; }
 /* Na telefonu je fotka na výšku a text zabírá skoro celou šířku, proto tu
    stín nejde zleva, ale shora a zdola. */
 @media (max-width: 900px) {
-  .hero { min-height: 92svh; }
+  /* Uvodni obrazovka drzi celou vysku displeje, at pod ni nevykukuje kus
+     dalsi sekce a fotka je videt cela. */
+  .hero { min-height: 100svh; }
   .hero__media::after {
     background:
       linear-gradient(180deg, rgba(14,11,9,.62) 0%, rgba(14,11,9,.22) 15%, rgba(14,11,9,0) 36%),
@@ -554,8 +562,8 @@ main { position: relative; z-index: 2; }
 /* barevný přechod mezi sekcemi, vždy v barvě té sekce, ze které se odchází */
 .sep {
   position: absolute;
-  left: -1px;
-  right: -1px;
+  left: 0;
+  right: 0;
   top: -1px;
   height: var(--sep-h);
   z-index: 3;
