@@ -11,6 +11,11 @@ from PIL import Image, ImageEnhance, ImageFilter
 SRC = 'podklady-originaly'
 OUT = 'web/assets/photos'
 
+# Docasna nahrada z fotobanky, nez dorazi vlastni fotky jidla. Unsplash
+# License, komercni uziti bez uvadeni autora:
+# https://unsplash.com/photos/photo-1584300005420-38486f627b07
+STOCK = {'jidlo-pstruh'}
+
 # webove jmeno -> soubor originalu
 MAP = {
     'apartman':               'p_P1060001.JPG',
@@ -20,6 +25,7 @@ MAP = {
     'areal-vjezd':            'p_P1060057.JPG',
     'bar':                    'r2_DSC05515a.jpg',
     'chodba':                 'p_P1060052.JPG',
+    'jidlo-pstruh':           'stock-pstruh.jpg',
     'fasada':                 'r2_DSC05504a.jpg',
     'koupelna':               'p_P7134998a.jpg',
     'kuchyne-provoz':         'r2_P1060009.JPG',
@@ -42,18 +48,18 @@ MAP = {
     'znak-slunce':            'r2_P1060041.JPG',
 }
 
-# Hlavička úvodní strany. Předloha má 640 bodů, takže se tu jako v jediném
-# místě zvětšuje. Hero proto zabírá jen pravý sloupec, ne celou šířku, a
-# zvětšení spadlo z troj- na necelý dvojnásobek. Ostří se jednou a mírně,
-# stupňované doostřování dělalo kolem hran hala a šum ve dřevě.
+# Hlavička úvodní strany: průčelí domu s cedulemi Restaurace a Pension.
+# Předloha má 1200 bodů, takže se zvětšuje jen málo. Ostří se jednou a mírně,
+# stupňované doostřování dělalo kolem hran hala.
 HERO = {
-    # Hero zabira jen pravy sloupec, ne celou sirku, proto staci zvetsit
-    # necelych dvakrat misto trikrat. To je jediny zpusob, jak z predlohy
-    # o 640 bodech dostat ostrost.
-    'hero-uvod':      ('r2_DSC05515a.jpg', (130, 0, 640, 480), 1300),
-    # na telefonu jde fotka pres celou obrazovku, proto vyska na sirku;
-    # displej ma kolem 400 bodu, takze se vyrez spis zmensuje nez zvetsuje
-    'hero-uvod-uzky': ('r2_DSC05515a.jpg', (140, 0, 500, 480), 800),
+    # Hero jde pres celou sirku okna, proto se bere cely snimek. Jeho pomer
+    # 16:9 sedi na sirokou obrazovku, takze prohlizec skoro nic neurizne.
+    'hero-uvod':      ('hero foto.jpg', (0, 0, 1200, 675), 1800),
+    # na telefonu jde fotka pres celou obrazovku, ta je ale skoro dvakrat
+    # vyssi nez sirsi; vyrez proto musi byt uzky jako displej, jinak by z nej
+    # prohlizec ubral dalsi kus po stranach. Zacina az za napisem Restaurace,
+    # at se zadne slovo neurizne, a konci u vstupni cedule.
+    'hero-uvod-uzky': ('hero foto.jpg', (334, 0, 684, 675), 800),
 }
 
 

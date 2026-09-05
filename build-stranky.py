@@ -16,7 +16,7 @@ TEL_P = '+420389822493'
 MAIL = 'lebrasynove@seznam.cz'
 
 # razítko za odkazy na styl a skript, aby si prohlížeč po úpravě načetl novou verzi
-ASSET_V = '20'
+ASSET_V = '25'
 
 PAGES = [
     ('index.html', 'Domů'),
@@ -119,7 +119,6 @@ def header(current):
 %s
     </nav>
 
-    <a class="btn btn--primary btn--sm header__cta" href="tel:%s">%s Rezervace</a>
 
     <button class="burger" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otevřít menu">
       <span></span><span></span><span></span>
@@ -134,7 +133,7 @@ def header(current):
     <a class="btn btn--ghost" href="tel:%s">Rezervace ubytování</a>
   </div>
 </div>
-''' % (nav, TEL_R, I_PHONE, mob, TEL_R, TEL_P)
+''' % (nav, mob, TEL_R, TEL_P)
 
 
 def footer(from_color, shape=''):
@@ -186,6 +185,7 @@ def footer(from_color, shape=''):
     <div class="footer__bottom">
       <span>Penzion U Slunce, všechna práva vyhrazena</span>
       <span>IČ 25183800</span>
+      <span>Web vytvořilo <a href="https://www.webostudio.cz/" target="_blank" rel="noopener">Webo Studio</a></span>
     </div>
   </div>
 </footer>
@@ -241,7 +241,7 @@ def band(quote, by, from_color, shape='', pic=None):
 
 
 def callout(h, p, from_color, shape=''):
-    return '''  <section class="section section--red section--tight">
+    return '''  <section class="section section--band section--tight">
 %s    %s
     <div class="wrap">
       <div class="callout" data-reveal>
@@ -321,8 +321,8 @@ def build_index():
   <section class="hero">
     <div class="hero__media">
       <picture>
-        <source media="(max-width: 900px)" srcset="assets/photos/hero-uvod-uzky.webp?v=%s" width="800" height="1067">
-        <img src="assets/photos/hero-uvod.webp?v=%s" alt="Bar restaurace U Slunce s výčepem, láhvemi a barovými židlemi" width="1300" height="1224" fetchpriority="high" decoding="async">
+        <source media="(max-width: 900px)" srcset="assets/photos/hero-uvod-uzky.webp?v=%s" width="800" height="1543">
+        <img src="assets/photos/hero-uvod.webp?v=%s" alt="Průčelí restaurace a penzionu U Slunce v Třeboni s cedulemi Restaurace a Pension" width="1800" height="1012" fetchpriority="high" decoding="async">
       </picture>
     </div>
 
@@ -331,8 +331,8 @@ def build_index():
       <div class="hero__inner">
       <h1 class="hero__title">U Slunce</h1>
       <div class="btn-row">
-        <a class="btn btn--primary btn--lg" href="tel:%s">Rezervovat stůl</a>
-        <a class="btn btn--light btn--lg" href="ubytovani.html">Ubytování</a>
+        <a class="btn btn--gold" href="tel:%s">Rezervovat stůl</a>
+        <a class="btn btn--light" href="ubytovani.html">Ubytování</a>
         </div>
       </div>
     </div>
@@ -384,7 +384,7 @@ def build_index():
 
 %s</main>
 ''' % (ASSET_V, ASSET_V, TEL_R, I_PIN, TEL_R, I_PHONE,
-       sep('hero'), I_ARROW,
+       sep('band'), I_ARROW,
        photo('fasada', 'Fasáda domu s nápisy Restaurace a Pension'),
        photo('znak-slunce', 'Kovaný znak slunce nad vchodem do penzionu'),
        sep('white', 'wave2'), tiles,
@@ -396,7 +396,7 @@ def build_index():
                  'Restaurace a penzion U Slunce v Třeboni. Česká kuchyně, čerstvé ryby z třeboňských '
                  'rybníků, pivo Bernard a klidné ubytování s parkováním v areálu.',
                  'index.html', SCHEMA)
-            + header('index.html') + body + footer('red', 'wave3') + LIGHTBOX + SCRIPT)
+            + header('index.html') + body + footer('band', 'wave3') + LIGHTBOX + SCRIPT)
 
 
 # ================================================================ Restaurace
@@ -472,7 +472,7 @@ def build_restaurace():
                  'Klidné posezení nedaleko centra Třeboně. Česká klasika, minutky a rybí speciality.',
                  'Restaurace'),
        sep('sand'), TEL_R,
-       photo('kuchyne-talire', 'Připravené talíře s jídlem na výdejním pultu'),
+       photo('jidlo-pstruh', 'Pečený pstruh se zeleninou na talíři'),
        photo('restaurace-interier', 'Interiér restaurace s obrazy a zelenými lavicemi'),
        sep('white', 'wave2'),
        photo('bar', 'Dřevěný bar restaurace s výčepem a barovými židlemi'),

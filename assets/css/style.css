@@ -59,8 +59,9 @@
   --wave-4: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath fill='%23fff' d='M0 0h1440v58c-96-8-192-30-288-30-192 0-288 44-480 44S384 24 192 24C128 24 64 34 0 44z'/%3E%3C/svg%3E");
   --wave-5: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath fill='%23fff' d='M0 0h1440v36c-160 46-320 12-480-14S640 4 480 34 160 74 0 52z'/%3E%3C/svg%3E");
 
-  /* spodni lista hero a vlnka pod ni musi mit stejnou barvu */
-  --hero-dark: #1a0806;
+  /* Tmavy pruh: lista pod hero, pas s rezervaci a vlnky, ktere z nich
+     vychazeji. Vsechno to musi mit jednu barvu, jinak je videt sev. */
+  --band: #35130f;
 
   --sep-h: clamp(34px, 4.6vw, 72px);
   --pad-y: clamp(62px, 7.4vw, 108px);
@@ -181,7 +182,7 @@ p:last-child { margin-bottom: 0; }
   gap: 10px;
   min-height: 52px;
   padding: 0 28px;
-  border-radius: 999px;
+  border-radius: var(--r-sm);
   font-size: .94rem;
   font-weight: 700;
   letter-spacing: .03em;
@@ -199,6 +200,7 @@ p:last-child { margin-bottom: 0; }
 
 .btn--dark { background: var(--black); color: #fff; }
 .btn--dark:hover { background: #322622; }
+
 
 .btn--ghost { border: 1px solid var(--line); color: var(--ink); }
 .btn--ghost:hover { border-color: var(--gold); color: var(--gold-deep); }
@@ -332,7 +334,6 @@ p:last-child { margin-bottom: 0; }
 .nav__link[aria-current="page"] { color: var(--red); }
 .nav__link[aria-current="page"]::after { transform: scaleX(1); background: var(--red); }
 
-.header__cta { margin-left: 8px; }
 
 .burger {
   display: none;
@@ -384,15 +385,15 @@ p:last-child { margin-bottom: 0; }
 body.is-locked { overflow: hidden; }
 
 /* 06 ------------------------------------------------------------- Hero */
-/* Dva sloupce: vlevo tmavý panel se jménem, vpravo fotka. Předloha má 640
-   bodů, a když fotka nemusí přes celou šířku, stačí ji zvětšit necelých
-   dvakrát místo třikrát. To je jediný způsob, jak z ní dostat ostrost.
-   Pod obojim je lišta s tím, co člověk potřebuje hned. */
+/* Fotka průčelí přes celou plochu, jméno leží na ní. Snímek je světlý a
+   kontrastní, proto se ztmavuje dvakrát: filtrem na obrázku, aby fotka sama
+   ustoupila do pozadí, a přechody přes ni, aby text držel čitelnost tam, kde
+   opravdu leží. Pod tím je lišta s tím, co člověk potřebuje hned. */
 .hero {
   position: relative;
   min-height: 100svh;
   display: grid;
-  grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: 1fr auto;
   background: var(--black);
   isolation: isolate;
@@ -403,22 +404,11 @@ body.is-locked { overflow: hidden; }
   position: relative;
   display: flex;
   align-items: flex-end;
-  background: linear-gradient(165deg, #401410 0%, #230a07 78%);
-  overflow: hidden;
 }
-.hero__panel .deco__sun {
-  position: absolute;
-  left: 24%;
-  top: 12%;
-  width: 44%;
-  aspect-ratio: 1;
-  background: #ffd35c;
-  opacity: .46;
-  -webkit-mask: url('../img/sun.svg') center / contain no-repeat;
-          mask: url('../img/sun.svg') center / contain no-repeat;
-}
+/* kresba slunce by na fotce jen dělala neklid */
+.hero__panel .deco__sun { display: none; }
 
-.hero__media { grid-area: 1 / 2; position: relative; overflow: hidden; }
+.hero__media { grid-area: 1 / 1; position: relative; overflow: hidden; }
 /* picture je inline a nema vysku, procentni vyska obrazku by se nemela o co oprit */
 .hero__media picture { display: block; position: absolute; inset: 0; }
 .hero__media img {
@@ -426,17 +416,20 @@ body.is-locked { overflow: hidden; }
   height: 100%;
   object-fit: cover;
   object-position: 50% 50%;
-  filter: contrast(1.07) saturate(1.02) brightness(.8);
+  filter: contrast(1.03) saturate(1.02) brightness(.84);
 }
-/* přechod na švách, aby fotka neměla tvrdou hranu do panelu */
+/* Stín zleva pod jméno, shora pod hlavičku a zdola k liště. Bordó nádech je
+   v něm jen naznačený, aby fotka zůstala fotkou a ne barevným filtrem;
+   drží ho vlastně jen spodek, kde stín přechází do tmavé lišty. */
 .hero__media::after {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(29,9,7,.96) 0%, rgba(29,9,7,.4) 9%, rgba(29,9,7,0) 22%),
-    linear-gradient(180deg, rgba(14,7,4,.5) 0%, rgba(14,7,4,0) 18%);
+    linear-gradient(90deg, rgba(18,13,11,.66) 0%, rgba(18,13,11,.3) 30%, rgba(18,13,11,.05) 56%, rgba(18,13,11,0) 78%),
+    linear-gradient(180deg, rgba(14,11,9,.44) 0%, rgba(14,11,9,.07) 22%, rgba(14,11,9,0) 34%),
+    linear-gradient(0deg, rgba(20,7,4,.66) 0%, rgba(20,7,4,.18) 24%, rgba(20,7,4,0) 42%);
 }
 
 .hero__inner {
@@ -453,6 +446,7 @@ body.is-locked { overflow: hidden; }
   font-size: clamp(3.2rem, 7vw, 6.4rem);
   line-height: .88;
   letter-spacing: -.038em;
+  text-shadow: 0 6px 40px rgba(6,2,1,.55);
 }
 
 .hero .btn-row { margin-top: clamp(28px, 4vh, 44px); }
@@ -463,7 +457,7 @@ body.is-locked { overflow: hidden; }
   z-index: 2;
   grid-area: 2 / 1 / 3 / -1;
   border-top: 1px solid rgba(255,255,255,.14);
-  background: var(--hero-dark);
+  background: var(--band);
   animation: fadeUp 900ms 380ms var(--ease) both;
 }
 .hero__bar-in {
@@ -497,29 +491,15 @@ body.is-locked { overflow: hidden; }
 }
 .hero__dot.is-shut { background: var(--ink-3); box-shadow: none; }
 
-/* Pod 900 body už na dva sloupce není místo. Fotka proto zabere celou
-   plochu a název s tlačítky leží na ní, jako na každém mobilním webu.
-   Dvě oddělené plochy pod sebou vypadaly lacině. */
+/* Na telefonu je fotka na výšku a text zabírá skoro celou šířku, proto tu
+   stín nejde zleva, ale shora a zdola. */
 @media (max-width: 900px) {
-  .hero {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto;
-    min-height: 92svh;
-  }
-  .hero__media { grid-area: 1 / 1; }
-  .hero__panel {
-    grid-area: 1 / 1;
-    background: none;
-    overflow: visible;
-  }
-  /* kresba slunce by na fotce jen dělala neklid */
-  .hero__panel .deco__sun { display: none; }
+  .hero { min-height: 92svh; }
   .hero__media::after {
     background:
-      linear-gradient(180deg, rgba(10,4,3,.82) 0%, rgba(10,4,3,.34) 15%, rgba(10,4,3,0) 36%),
-      linear-gradient(0deg, rgba(22,8,5,.95) 0%, rgba(22,8,5,.78) 22%, rgba(22,8,5,.34) 46%, rgba(22,8,5,0) 68%);
+      linear-gradient(180deg, rgba(14,11,9,.62) 0%, rgba(14,11,9,.22) 15%, rgba(14,11,9,0) 36%),
+      linear-gradient(0deg, rgba(20,7,4,.88) 0%, rgba(20,7,4,.62) 22%, rgba(20,7,4,.2) 46%, rgba(20,7,4,0) 64%);
   }
-  .hero__bar { grid-area: 2 / 1; }
   .hero__inner { padding: var(--header-h) 20px clamp(30px, 6vw, 44px); }
   .hero__title {
     font-size: clamp(2.9rem, 13vw, 4.2rem);
@@ -587,9 +567,8 @@ main { position: relative; z-index: 2; }
 .sep--white { --sep-bg: var(--white); }
 .sep--sand  { --sep-bg: var(--sand); }
 .sep--paper { --sep-bg: var(--paper); }
-.sep--red   { --sep-bg: var(--red); }
 .sep--black { --sep-bg: var(--black); }
-.sep--hero  { --sep-bg: var(--hero-dark); }
+.sep--band  { --sep-bg: var(--band); }
 .sep--wave2 { --sep-shape: var(--wave-2); }
 .sep--wave3 { --sep-shape: var(--wave-3); }
 .sep--wave4 { --sep-shape: var(--wave-4); }
@@ -608,8 +587,8 @@ main { position: relative; z-index: 2; }
 .section { padding: calc(var(--pad-y) + var(--sep-h)) 0 var(--pad-y); position: relative; }
 .section--tight { padding: calc(var(--pad-y-tight) + var(--sep-h)) 0 var(--pad-y-tight); }
 .section--paper { background: var(--surface-alt); border-block: 1px solid var(--line-soft); }
-.section--red { background: var(--red); color: rgba(255,255,255,.84); }
-.section--red h2, .section--red h3 { color: #fff; }
+.section--band { background: var(--band); color: rgba(255,255,255,.84); }
+.section--band h2, .section--band h3 { color: #fff; }
 
 .section-head { max-width: 660px; margin-bottom: clamp(34px, 4vw, 52px); }
 .section-head.is-centered { margin-inline: auto; text-align: center; }
@@ -731,9 +710,9 @@ main { position: relative; z-index: 2; }
 .info li { padding: 15px 2px; border-bottom: 1px solid var(--line-soft); }
 .info strong { display: block; font-size: 1rem; color: var(--black); }
 .info span { font-size: .92rem; color: var(--ink-2); }
-.section--red .info li { border-bottom-color: rgba(255,255,255,.16); }
-.section--red .info strong { color: #fff; }
-.section--red .info span { color: rgba(255,255,255,.7); }
+.section--band .info li { border-bottom-color: rgba(255,255,255,.16); }
+.section--band .info strong { color: #fff; }
+.section--band .info span { color: rgba(255,255,255,.7); }
 /* varianta do dlazdic, aby dva seznamy na jedne strance nevypadaly stejne */
 .info--tiles {
   grid-template-columns: repeat(3, 1fr);
@@ -778,10 +757,10 @@ main { position: relative; z-index: 2; }
   opacity: .2;
   animation: none;
 }
-.section--red .callout h2 { color: #fff; margin-bottom: 14px; }
-.section--red .callout p { color: rgba(255,255,255,.86); max-width: 56ch; margin-inline: auto; margin-bottom: 28px; }
+.section--band .callout h2 { color: #fff; margin-bottom: 14px; }
+.section--band .callout p { color: rgba(255,255,255,.86); max-width: 56ch; margin-inline: auto; margin-bottom: 28px; }
 .callout .btn-row { justify-content: center; position: relative; }
-.section--red .deco__sun { top: 50%; right: 3%; width: clamp(200px, 24vw, 320px); aspect-ratio: 1; transform: translateY(-50%); opacity: .17; }
+.section--band .deco__sun { top: 50%; right: 3%; width: clamp(200px, 24vw, 320px); aspect-ratio: 1; transform: translateY(-50%); opacity: .17; }
 
 /* kontaktní karta */
 .contact-card {
@@ -1182,7 +1161,7 @@ main { position: relative; z-index: 2; }
 
 @media (max-width: 940px) {
   :root { --header-h: 68px; }
-  .nav, .header__cta { display: none; }
+  .nav { display: none; }
   .burger { display: block; }
 
 
